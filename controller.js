@@ -1,8 +1,17 @@
 function rollWeapon(index){
-    let randomIndex = Math.floor(Math.random() * weaponsList[index].length);
-    let weaponObj = weaponsList[index].splice(randomIndex, 1);
-    weaponObj = weaponObj.pop()
-    inventoryList.push(weaponObj);
+    if(inventoryList.length < 2){
+        let randomIndex = Math.floor(Math.random() * weaponsList[index].length);
+        let weaponObj = weaponsList[index].splice(randomIndex, 1);
+        weaponObj = weaponObj.pop()
+        inventoryList.push(weaponObj);
+        displayView();
+    }
+
+    return;
+}
+
+function removeItemFromInventory(index){
+    inventoryList.splice(index, 1);
     displayView();
 }
 
@@ -29,6 +38,7 @@ function useVialForReroll(){
 
 function restAtCamp(){
     blackenedBloodVailCurrentCharges = blackenedBloodVailMaxCharges;
+    playerCurrentHealth = playerMaxHealth;
     displayView();
 }
 
@@ -42,6 +52,7 @@ function levelStat(index){
         stat.level++;
         boneFragments.amount -= stat.cost;
         stat.cost = levelCostList[stat.level];
+        displayViewStats[index] = stat.level + equipStats[index].level;
     }
 
     displayView();
@@ -51,5 +62,11 @@ function addCurrency(index){
     let type = currency[index];
 
     type.amount++;
+    displayView();
+}
+
+function playerTakeDamage(damage){
+    playerCurrentHealth -= damage;
+
     displayView();
 }

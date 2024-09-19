@@ -9,7 +9,7 @@
 
 
 
-stats = [
+let stats = [
     {stat: 'vitality', level: 0, cost: 4, displayName: 'Vitality'},
     {stat: 'endurance', level: 0, cost: 4, displayName: 'Endurance'},
     {stat: 'strenght', level: 0, cost: 4, displayName: 'Strenght'},
@@ -18,7 +18,7 @@ stats = [
     {stat: 'faith', level: 0, cost: 4, displayName: 'Faith'},
 ];
 
-currency = [
+let currency = [
     {currencyType: 'boneFragments', amount: 0, displayName: 'Bone Fragments'},
     {currencyType: 'earthenBulbs', amount: 3, displayName: 'Earthen Bulbs'},
 ]
