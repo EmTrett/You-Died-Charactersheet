@@ -3,6 +3,7 @@ function rollWeapon(index){
         let randomIndex = Math.floor(Math.random() * weaponsList[index].length);
         let weaponObj = weaponsList[index].splice(randomIndex, 1);
         weaponObj = weaponObj.pop()
+        weaponObj.isNotEquipped = true;
         inventoryList.push(weaponObj);
         displayView();
     }
@@ -72,8 +73,8 @@ function playerTakeDamage(damage){
 }
 
 function calculateStat(statIndex, statValue){
-    equippment = equipStats[statIndex];
-    stat = stats[statIndex];
+    let equippment = equipStats[statIndex];
+    let stat = stats[statIndex];
 
     equippment.level = statValue;
     displayViewStats[statIndex] = stat.level + equippment.level;
@@ -82,12 +83,27 @@ function calculateStat(statIndex, statValue){
 
 function getStatsFromEqiupment(itemIndex){
     let item = inventoryList[itemIndex].eqiuppedStat;
-
     for(let i = 0; i < item.length; i++){
         let index = item[i].statIndex;
         let change = item[i].statChange;
-
+        
         calculateStat(index, change);
     }
+    inventoryList[itemIndex].isNotEquipped = false;
+    displayView();
+}
+
+function removeItemFromEquippment(itemIndex){
+    let item = inventoryList[itemIndex].eqiuppedStat;
+
+    for(let i = 0; i < item.length; i++){
+        let index = item[i].statIndex;
+        let equippment = equipStats[index];
+        let stat = stats[index];
+
+        equippment.level = 0;
+        displayViewStats[index] = stat.level + equippment.level;
+    }
+    inventoryList[itemIndex].isNotEquipped = true;
     displayView();
 }

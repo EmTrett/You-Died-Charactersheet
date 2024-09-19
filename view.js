@@ -118,28 +118,57 @@ function createStatTableHTML(stat, i){
 function createInventoryItem(index){
     item = inventoryList[index];
 
-    return /*HTML*/ `
-        <tr>
-            <th>Item name:</th>
-            <td>${item.weaponName}</td>
-            <th><button onclick="removeItemFromInventory(${index})">Remove item</button></th>
-        </tr>
-        <tr>
-            <th>Requirements:</th>
-            <td>${item.requirementValue} ${item.requirementStat}</td>
-        </tr>
-        <tr>
-            <th>
-                Equipped 
-                Benefits:
-            </th>
-            <td>${item.eqiuppedBenefitsText}</td>
-        </tr>
-        <tr>
-            <th>Damage:</th>
-            <td>${item.damage}</td>
-        </tr>
-    `
+    if(item.isNotEquipped == true){
+        return /*HTML*/ `
+            <tr>
+                <th>Item name:</th>
+                <td>${item.weaponName}</td>
+                <th><button onclick="removeItemFromInventory(${index})">Remove item</button></th>
+                <th><button onclick="getStatsFromEqiupment(${index})">Equip item</button></th>
+            </tr>
+            <tr>
+                <th>Requirements:</th>
+                <td>${item.requirementValue} ${item.requirementStat}</td>
+            </tr>
+            <tr>
+                <th>
+                    Equipped 
+                    Benefits:
+                </th>
+                <td>${item.eqiuppedBenefitsText}</td>
+            </tr>
+            <tr>
+                <th>Damage:</th>
+                <td>${item.damage}</td>
+            </tr>
+        `;
+    }
+    else {
+        {
+            return /*HTML*/ `
+                <tr>
+                    <th>Item name:</th>
+                    <td>${item.weaponName}</td>
+                    <th><button onclick="removeItemFromEquippment(${index})">Unequip tem</button></th>
+                </tr>
+                <tr>
+                    <th>Requirements:</th>
+                    <td>${item.requirementValue} ${item.requirementStat}</td>
+                </tr>
+                <tr>
+                    <th>
+                        Equipped 
+                        Benefits:
+                    </th>
+                    <td>${item.eqiuppedBenefitsText}</td>
+                </tr>
+                <tr>
+                    <th>Damage:</th>
+                    <td>${item.damage}</td>
+                </tr>
+            `;
+        }
+    }
 }
 
 function calculatePlayerHealth(){
