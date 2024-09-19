@@ -23,7 +23,7 @@ function displayView(){
     calculatePlayerHealth();
     if(playerCurrentHealth > 0){
         document.body.innerHTML = /*HTML*/ `
-            <div>
+            <div class="statPage">
                 Player HP: ${playerCurrentHealth}
                 <br />
                 <input id="dmgInput" type="number" onchange="damageValue = this.valueAsNumber"/>
@@ -60,9 +60,12 @@ function displayView(){
                 <br />
                 <button onclick="rollWeapon(3)">Roll for act 3 weapon</button>
                 <br />
+            </div>
+            <div class="inventoryPage">
                 <table>
                     ${inventoryHTML}
                 </table>
+            </div>
         `;
     }
     else {
@@ -130,7 +133,7 @@ function createInventoryItem(index){
                 Equipped 
                 Benefits:
             </th>
-            <td>${item.eqiuppedBenefits}</td>
+            <td>${item.eqiuppedBenefitsText}</td>
         </tr>
         <tr>
             <th>Damage:</th>

@@ -70,3 +70,24 @@ function playerTakeDamage(damage){
 
     displayView();
 }
+
+function calculateStat(statIndex, statValue){
+    equippment = equipStats[statIndex];
+    stat = stats[statIndex];
+
+    equippment.level = statValue;
+    displayViewStats[statIndex] = stat.level + equippment.level;
+
+}
+
+function getStatsFromEqiupment(itemIndex){
+    let item = inventoryList[itemIndex].eqiuppedStat;
+
+    for(let i = 0; i < item.length; i++){
+        let index = item[i].statIndex;
+        let change = item[i].statChange;
+
+        calculateStat(index, change);
+    }
+    displayView();
+}
